@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;1,100;1,200&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+main {
+  height: 80%;
+  margin: 5% auto;
+  height: 100%;
+}
+.big-ball,
+.mid-ball,
+.small-ball {
+  z-index: -1;
+  position: absolute;
+  opacity: 0.7;
+}
+.big-ball {
+  top: 0px;
+  right: 0px;
+  height: 80%;
+}
+.mid-ball {
+  top: 30%;
+  right: 40%;
+  height: 60%;
+}
+.small-ball {
+  bottom: 0px;
+  right: 70%;
+  height: 40%;
+}
+
+#taskUserInput,
+button,
+li {
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 500;
+  font-size: x-large;
+}
+#container {
+  width: 60%;
+  margin: 20px 20%;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#taskUserInput {
+  height: 30px;
+  text-align: center;
+  width: 80%;
+  align-self: center;
+  border: none;
+  font-size: small;
+}
+
+#form button {
+  width: 70px;
+  height: 30px;
+  font-size: small;
+  align-self: center;
+  margin-top: 20px;
+  border: none;
+  background-color: #36514b;
+  color: whitesmoke;
+}
+
+ul {
+  height: 250px;
+  width: 40%;
+  margin: 0 30%;
+  overflow: scroll !important;
+  margin: 0px 30%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+ul::-webkit-scrollbar {
+  display: none;
+}
+
+li {
+  background-color: #d2d7d9;
+  font-size: small;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+}
+
+.btn-container button {
+  width: 50px;
+  height: 20px;
+  margin-left: 10px;
+  font-size: x-small;
+}
+
+.delete-btn {
+  background-color: #f23030;
+  color: whitesmoke;
+}
+
+@media screen and (max-width: 900px) {
+  main {
+    margin-top: 20%;
+  }
+  .big-ball {
+    top: 0px;
+    right: 0px;
+    width: 40%;
+  }
+  .mid-ball {
+    top: 30%;
+    right: 40%;
+    width: 30%;
+  }
+  .small-ball {
+    bottom: 0px;
+    right: 70%;
+    width: 20%;
+  }
+  ul {
+    width: 70%;
+    margin: 0% 15%;
+    height: initial;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .big-ball {
+    top: -150px;
+    right: 0px;
+    width: 80%;
+  }
+
+  .small-ball,
+  .mid-ball {
+    display: none;
+  }
+  ul {
+    width: 90%;
+    margin: 0% 5%;
+  }
+  li {
+    min-width: 100%;
+  }
+}
