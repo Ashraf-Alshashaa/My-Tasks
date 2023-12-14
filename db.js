@@ -1,8 +1,10 @@
 import { MongoClient } from "mongodb";
 import { ObjectId } from "mongodb";
+import dotenv from "dotenv";
+dotenv.config();
 
 const dbName = "crud_mongodb";
-const url = "mongodb://127.0.0.1:27017";
+const url = process.env.MONGODB_URL;
 const mongoOption = { useNewUrlParser: true };
 
 const state = {
