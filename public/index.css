@@ -6,6 +6,10 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+button {
+  cursor: pointer;
+}
 body {
   display: flex;
   justify-content: center;
@@ -40,6 +44,7 @@ main {
 
 #taskUserInput,
 button,
+.edit-modal,
 li {
   border: none;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -116,10 +121,6 @@ li {
   margin-left: auto;
 }
 
-.btn-container button {
-  cursor: pointer;
-}
-
 .btn-container button span {
   font-size: large;
   padding: 4px;
@@ -135,6 +136,50 @@ li {
 
 .delete-icon {
   color: #f23030;
+}
+
+.edit-modal-container {
+  background-color: rgba(245, 245, 245, 0.483);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-modal {
+  width: 300px;
+  background-color: whitesmoke;
+  padding: 16px;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cancel-icon {
+  cursor: pointer;
+}
+
+.edit-task-input {
+  width: 100%;
+  margin-top: 16px;
+  padding: 8px;
+  resize: vertical;
+}
+.done-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+.done-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #36514b;
+  color: white;
+  font-size: small;
 }
 
 @media screen and (max-width: 900px) {
