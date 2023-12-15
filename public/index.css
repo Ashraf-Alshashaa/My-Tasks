@@ -59,9 +59,9 @@ h1 {
 }
 
 #taskUserInput {
-  height: 30px;
+  height: 70px;
   text-align: center;
-  width: 80%;
+  width: 100%;
   align-self: center;
   border: none;
   font-size: small;
