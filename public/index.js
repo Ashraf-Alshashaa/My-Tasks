@@ -34,10 +34,18 @@ const createTask = (task, ids) => {
   element.id = ids.listItemsID;
 
   element.innerHTML = String.raw`
-    <div id="${ids.taskID}">${task.task}</div>
+    <p class="task-content" id="${ids.taskID}">${task.task}</p>
     <div class="btn-container">
-      <button class="edit-btn" type="button" type="submit" id="${ids.editID}">Edit</button>
-      <button class="delete-btn" type="button" id="${ids.deleteID}">Delete</button>
+      <button class="edit-btn" type="button" type="submit" id="${ids.editID}">
+        <span class="material-symbols-outlined edit-icon">
+          edit
+        </span>
+      </button>
+      <button class="delete-btn" type="button" id="${ids.deleteID}">
+        <span class="material-symbols-outlined delete-icon" >
+          delete
+        </span>
+      </button>
     </div>
 `;
   return element;
