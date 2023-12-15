@@ -11,7 +11,7 @@ const initTasks = async () => {
     const taskItem = createTask(task, ids);
     tasksList.appendChild(taskItem);
     deleteTask(task, ids.listItemsID, ids.deleteID);
-    editTask(task, ids.taskID, ids.editID);
+    editTask(task, ids);
   });
 };
 
@@ -26,6 +26,9 @@ const createIDS = (task) => {
     taskID: `task_${task._id}`,
     deleteID: `delete_${task._id}`,
     editID: `edit_${task._id}`,
+    editInputID: `edit_${task._id}_input`,
+    doneID: `done_${task._id}`,
+    cancelID: `cancel_${task._id}`,
   };
 };
 
@@ -34,12 +37,43 @@ const createTask = (task, ids) => {
   element.id = ids.listItemsID;
 
   element.innerHTML = String.raw`
-    <div id="${ids.taskID}">${task.task}</div>
+    <p class="task-content" id="${ids.taskID}">${task.task}</p>
     <div class="btn-container">
-      <button class="edit-btn" type="button" type="submit" id="${ids.editID}">Edit</button>
-      <button class="delete-btn" type="button" id="${ids.deleteID}">Delete</button>
+      <button class="edit-btn" type="button" id="${ids.editID}">
+        <span class="material-symbols-outlined edit-icon">
+          edit
+        </span>
+      </button>
+      <button class="delete-btn" type="button" id="${ids.deleteID}">
+        <span class="material-symbols-outlined delete-icon" >
+          delete
+        </span>
+      </button>
     </div>
+    
 `;
+  return element;
+};
+
+const editTaskModal = (ids) => {
+  const element = document.createElement("div");
+  element.className = "edit-modal-container";
+  element.innerHTML = String.raw`
+    <div class="edit-modal">
+      <div class="modal-header">
+        <p class="title">Edit Task</p>
+          <span id="${ids.cancelID}" class="material-symbols-outlined cancel-icon" >
+            close
+          </span>
+      </div>
+      <textarea class="edit-task-input" id="${ids.editInputID}"></textarea>
+      <div class="done-btn-container">
+        <button class="done-btn" type="button" type="submit" id="${ids.doneID}">
+          Done
+        </button>
+      </div>
+    </div>
+  `;
   return element;
 };
 
@@ -50,25 +84,37 @@ form.addEventListener("submit", async (e) => {
     body: JSON.stringify({ task: taskUserInput.value }),
     headers: { "Content-type": "application/json; charset=utf-8" },
   });
-  console.log("data", data);
   let ids = createIDS(data.document);
   const newTask = createTask(data.document, ids);
   tasksList.appendChild(newTask);
-  location.reload();
   taskUserInput.value = "";
 });
 
-const editTask = (task, taskID, editID) => {
-  const btn = document.querySelector(`#${editID}`);
+const editTask = (task, ids) => {
+  const btn = document.querySelector(`#${ids.editID}`);
   btn.addEventListener("click", async () => {
-    const data = await fetchData(`/${task._id}`, {
-      method: "put",
-      headers: { "Content-type": "application/json; charset=utf-8" },
-      body: JSON.stringify({ task: taskUserInput.value }),
+    const editedTask = document.querySelector(`#${ids.taskID}`);
+    const editTaskModalElement = editTaskModal(ids);
+    document.body.appendChild(editTaskModalElement);
+    const editTaskInput = document.querySelector(`#${ids.editInputID}`);
+    editTaskInput.value = editedTask.textContent;
+    editTaskInput.style.height = editTaskInput.scrollHeight + 8 + "px";
+
+    const doneBtn = document.querySelector(`#${ids.doneID}`);
+    doneBtn.addEventListener("click", async () => {
+      const data = await fetchData(`/${task._id}`, {
+        method: "put",
+        headers: { "Content-type": "application/json; charset=utf-8" },
+        body: JSON.stringify({ task: editTaskInput.value }),
+      });
+      editedTask.innerHTML = data.userInput.task;
+      editTaskModalElement.remove();
     });
-    const editedTask = document.querySelector(`#${taskID}`);
-    editedTask.innerHTML = data.userInput.task;
-    taskUserInput.value = "";
+
+    const cancelBtn = document.querySelector(`#${ids.cancelID}`);
+    cancelBtn.addEventListener("click", () => {
+      editTaskModalElement.remove();
+    });
   });
 };
 
