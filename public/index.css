@@ -9,10 +9,11 @@
 body {
   display: flex;
   justify-content: center;
+  padding: 32px;
 }
 main {
-  margin-top: 74px;
   max-width: 1000px;
+  width: 100%;
 }
 .big-ball,
 .mid-ball,
@@ -114,9 +115,6 @@ li {
 }
 
 @media screen and (max-width: 900px) {
-  main {
-    margin-top: 20%;
-  }
   .big-ball {
     top: 0px;
     right: 0px;
@@ -133,8 +131,6 @@ li {
     width: 20%;
   }
   ul {
-    width: 70%;
-    margin: 0% 15%;
     height: initial;
   }
 }
@@ -149,12 +145,5 @@ li {
   .small-ball,
   .mid-ball {
     display: none;
-  }
-  ul {
-    width: 90%;
-    margin: 0% 5%;
-  }
-  li {
-    min-width: 100%;
   }
 }
