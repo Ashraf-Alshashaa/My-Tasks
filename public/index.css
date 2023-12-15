@@ -201,6 +201,9 @@ li {
   ul {
     height: initial;
   }
+  li {
+    grid-column: span 6;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -213,5 +216,8 @@ li {
   .small-ball,
   .mid-ball {
     display: none;
+  }
+  li {
+    grid-column: span 12;
   }
 }
